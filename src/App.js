@@ -38,19 +38,16 @@ export default function App() {
           keyExtractor={repository => repository.id}
           style={styles.repositoryContainer}
           renderItem={({ item: repository }) => (
-            <>
+            <View style={styles.repositoryContainer}>
               <Text style={styles.repository}>{repository.title}</Text>
-              
-              <FlatList 
-                data={repository.techs}
-                keyExtractor={repository => repository.id}
-                style={styles.techsContainer}
-                renderItem={({ item: tech }) => (
-                  <Text style={styles.tech}>
+
+              <View style={styles.techsContainer}>
+                {repository.techs.map(tech => (
+                  <Text key={tech} style={styles.tech}>
                     {tech}
                   </Text>
-                )}
-              />
+                ))}
+              </View>
 
               <View style={styles.likesContainer}>
                 <Text
@@ -68,7 +65,7 @@ export default function App() {
               >
                 <Text style={styles.buttonText}>Curtir</Text>
               </TouchableOpacity>
-            </>
+            </View>
           )}
         />
 
